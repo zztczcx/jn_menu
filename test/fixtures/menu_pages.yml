@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  menu_id: 1
+  page_number: 1
+  image_id: 
+  full_height: 1
+  full_width: 1
+  uuid: MyString
+
+two:
+  menu_id: 1
+  page_number: 1
+  image_id: 
+  full_height: 1
+  full_width: 1
+  uuid: MyString

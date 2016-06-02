@@ -1,0 +1,19 @@
+<div class="container">
+  <div class="menus">
+      <table class="table"> 
+        <caption>place, venue, event table.</caption> 
+        <thead> <tr> <th>#</th> <th>Place</th> <th>Venue</th> <th>Event</th> </tr> </thead> 
+        <tbody> 
+          <% @menus.each do |menu| %>
+            <tr> 
+              <th scope="row"><%= menu.id %></th> 
+              <td><%= menu.place %></td> 
+              <td><a href="/menus/venue/<%= menu.venue  %>"><%= menu.venue %></a></td> 
+              <td><a href="/menus/event/<%=menu.event %>"><%= menu.event %></a></td> 
+            </tr> 
+          <% end %>
+        </tbody> 
+      </table>
+      <%= paginate @menus %>
+  </div>
+</div>

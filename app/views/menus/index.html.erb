@@ -1,0 +1,101 @@
+<% if false %>
+<div>
+upload the csv file
+
+<%= form_for @menu, html: { multipart: true } do |f| %>
+      <%= f.file_field :attachment %>
+      <%= f.submit "Save", class: "btn btn-primary" %>
+   <% end %>
+</div>
+
+<% end %>
+
+<div class="container">
+  <div class="menu-selector">
+      <form>
+      <div class="row">
+          <div class='col-sm-3'>
+            <div class="form-group">
+              <label for="place" >place</label>
+              <input type="text" id="place-input" class="form-control">
+            </div>
+          </div>
+
+          <div class='col-sm-3'>
+            <label> begin time </label>
+            <div class='input-group date' id='datetimepicker1'>
+                <input type='text' class="form-control" />
+                <span class="input-group-addon">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+            </div>
+          </div>
+          <div class='col-sm-3'>
+            <label> end time </label>
+            <div class='input-group date' id='datetimepicker2'>
+                <input type='text' class="form-control" />
+                <span class="input-group-addon">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+            </div>
+          </div>
+          <div class='col-sm-3'>
+            <button type="submit" id="menus-export" class="btn btn-default" style="margin-top:26px;">export</button>
+          </div>
+      </div>
+      </form>
+  </div>
+
+  <div class="menus">
+      <table class="table"> 
+        <caption>place, venue, event table.</caption> 
+        <thead> <tr> <th>#</th> <th>Place</th> <th>Venue</th> <th>Event</th> </tr> </thead> 
+        <tbody> 
+          <% @menus.each do |menu| %>
+            <tr> 
+              <th scope="row"><%= menu.id %></th> 
+              <td><%= menu.place %></td> 
+              <td><a href="/menus/venue/<%= menu.venue  %>"><%= menu.venue %></a></td> 
+              <td><a href="/menus/event/<%=menu.event %>"><%= menu.event %></a></td> 
+            </tr> 
+          <% end %>
+        </tbody> 
+      </table>
+      <%= paginate @menus %>
+  </div>
+</div>
+
+
+
+
+
+<script type="text/javascript">
+$(function () {
+    $('#datetimepicker1, #datetimepicker2').datetimepicker({
+      format: "YYYY-MM-DDTHH:mm:ssZ"
+      });
+
+    $('#menus-export').click(function(e){
+      //TODO 输入检查？
+      e.preventDefault() 
+      var place = $("#place-input").val()
+      var begin_time = $("#datetimepicker1 input").val()
+      var end_time = $("#datetimepicker2 input").val()
+
+      console.log(place, begin_time, end_time)
+
+      $.post("<%= export_menus_url %>", {place: place, begin_time: begin_time, end_time: end_time}, function(data){
+         download(JSON.stringify(data)) 
+      })
+
+      return false
+    })
+});
+
+function download(data) {
+  var url = 'data:text/json;charset=utf8,' + encodeURIComponent(data);
+  window.open(url, '_blank');
+  window.focus();
+}
+
+</script>

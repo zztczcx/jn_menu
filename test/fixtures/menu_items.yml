@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  menu_page_id: 1
+  price: 1.5
+  high_price: 1.5
+  dish_id: 
+  created_at: 2016-05-31 11:38:58
+  updated_at: 2016-05-31 11:38:58
+  xpos: 1.5
+  ypos: 1.5
+
+two:
+  menu_page_id: 1
+  price: 1.5
+  high_price: 1.5
+  dish_id: 
+  created_at: 2016-05-31 11:38:58
+  updated_at: 2016-05-31 11:38:58
+  xpos: 1.5
+  ypos: 1.5
