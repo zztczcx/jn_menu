@@ -1,0 +1,26 @@
+<div class="container">
+  <h3>Menu Collections</h3>
+<form action="/restaurant/create", method="post" enctype="multipart/form-data">
+  <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+  <div class="form-group">
+    <label for="url">url</label>
+    <input type="text" class="form-control" id="url-input" placeholder="" name="url">
+  </div>
+  <div class="form-group">
+    <p class="help-block"> upload the csv file </p>
+    <label for="exampleInputFile">zip file must contain Menu.csv MenuPage.csv MenuItem.csv Dish.csv</label>
+    <input type="file" id="exampleInputFile" name="file">
+  </div>
+  <button type="submit" class="btn btn-default">Submit</button>
+</form>
+
+
+<% if false %>
+<%= form_for @menu, html: { multipart: true } do |f| %>
+      <%= f.file_field :attachment %>
+      <%= f.submit "Save", class: "btn btn-primary" %>
+<% end %>
+<% end %>
+</div>
+
+

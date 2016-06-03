@@ -67,6 +67,7 @@ Rails.application.routes.draw do
     
   end
 
-  root to: "menus#index"
+  post "/restaurant/create", to: "restaurant#create"
+  root to: "restaurant#index"
 
 end
