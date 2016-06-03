@@ -1,15 +1,3 @@
-<% if false %>
-<div>
-upload the csv file
-
-<%= form_for @menu, html: { multipart: true } do |f| %>
-      <%= f.file_field :attachment %>
-      <%= f.submit "Save", class: "btn btn-primary" %>
-   <% end %>
-</div>
-
-<% end %>
-
 <div class="container">
   <div class="menu-selector">
       <form>
@@ -79,12 +67,16 @@ $(function () {
       //TODO 输入检查？
       e.preventDefault() 
       var place = $("#place-input").val()
-      var begin_time = $("#datetimepicker1 input").val()
-      var end_time = $("#datetimepicker2 input").val()
+      var begin = $("#datetimepicker1 input").val()
+      var end = $("#datetimepicker2 input").val()
 
-      console.log(place, begin_time, end_time)
+      console.log(place, begin, end)
 
-      $.post("<%= export_menus_url %>", {place: place, begin_time: begin_time, end_time: end_time}, function(data){
+      if(place == "" || begin == "" || end == ""){
+        return alert("please fill all field") 
+      }
+
+      $.post("<%= export_menus_url %>", {place: place, begin_time: begin, end_time: end}, function(data){
          download(JSON.stringify(data)) 
       })
 

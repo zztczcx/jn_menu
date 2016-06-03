@@ -4,9 +4,9 @@ require 'zip'
 require 'open-uri'
 class RestaurantController < ApplicationController
   def index
-    if Menu.count > 0 
-      redirect_to menus_path
-    end
+    #if Menu.count > 0 
+      #redirect_to menus_path
+    #end
   end
 
   def create
